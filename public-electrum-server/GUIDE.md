@@ -16,7 +16,7 @@ Setup Bitcoin Core on Local machine:
 - [UNB22 - 04 - Bitcoin Core](https://youtu.be/fx_mLXISrfM) 
 
 Setup Fulcrum Server OR ElectrumX Server on Local machine:
-- [UNB22 - 05 - Fulcrum Server](https://youtu.be/SpQRrbJt7cg)
+- [UNB22 - 05 - Fulcrum Server](https://youtu.be/SpQRrbJt7cg) OR
 - [Running an ElectrumX Server](https://youtu.be/QiX0rR_o_fI)
 
 In addition to the above you will also need a VPS:
