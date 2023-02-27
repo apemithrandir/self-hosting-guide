@@ -225,3 +225,6 @@ ufw status
 You will also want to look into some basic server security:
   - [How to disable ssh password login](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
   - [Fail2Ban](https://github.com/fail2ban/fail2ban)
+
+### Acknowledgements
+Thanks to [wiz](https://github.com/wiz) and [emzy](https://github.com/Emzy) for helping me when I was setting this up for myself.
