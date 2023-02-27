@@ -54,7 +54,7 @@ After=network.target
 User=statue
 Group=statue
 Environment="AUTOSSH_GATETIME=0"
-ExecStart=/usr/bin/autossh -C -M 0 -v -N -o "ServerAliveInterval=60" -R <remote_port>:localhost:50001 <remote-username>@<remote-ip-or-domain>
+ExecStart=/usr/bin/autossh -C -M 0 -v -N -o "ServerAliveInterval=60" -R <remote-port>:localhost:50001 <remote-username>@<remote-ip-or-domain>
 Restart=always
 RestartSec=60
 StandardOutput=journal
