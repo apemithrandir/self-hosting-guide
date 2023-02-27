@@ -228,3 +228,8 @@ You will also want to look into some basic server security:
 
 ### Acknowledgements
 Thanks to [wiz](https://github.com/wiz) and [emzy](https://github.com/Emzy) for helping me when I was setting this up for myself.
+
+### Issues
+
+I am not on Twitter but if you need help with this guide you can create an
+issue on the repo and I will help you there.
