@@ -33,21 +33,21 @@ This [guide](https://openoms.github.io/bitcoin-tutorials/ssh_tunnel.html) from @
 You should have [ssh keys setup](https://www.cyberciti.biz/faq/how-to-set-up-ssh-keys-on-linux-unix/) and copied over to your VPS. For this ssh tunnel daemon to work smoothly you will need ssh keys without a passphrase.
 
 First install autossh which is a wrapper on ssh:
-```
+```bash
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install autossh
 ```
 
 Then create a `.service` file to run your ssh tunnel daemon:
-```
+```bash
 sudo vim /etc/systemd/system/ssh-tunnel.service
 ```
 
 Here is a template of this `.service` file:
 ```service
 [Unit]
-Description=Remote SSH tunnel for multiple TCP applications
+Description=Remote SSH tunnel for Electrum Server
 After=network.target
 
 [Service]
@@ -66,4 +66,29 @@ WantedBy=multi-user.target
 The port you are tunneling should be the regular TCP port 50001 and not the SSL
 port 50002. This is because on the VPS we will be using your cert and key from
 your Electrum server to apply SSL via nginx when exposing the data to the
-public.
+public. You want to edit the config file for your Electrum Server and make sure
+the line relating to enabling tcp is uncommented. In `fulcrum.conf` this is
+near line ~120 `tcp = 0.0.0.0:50001`. 
+
+Once the daemon file `ssh-tunnel.service` has been created you will need to
+reload, enable and start:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable ssh-tunnel.service
+sudo systemctl start ssh-tunnel.service
+```
+
+You should then check the status or logs:
+```bash
+sudo systemctl status ssh-tunnel.service
+```
+or
+```bash
+journalctl -fu ssh-tunnel.service
+```
+
+This important line in the logs you should be looking for is this:
+```bash
+autossh[<process-id>]: debug1: remote forward success for: listen <remote-port>, connect localhost:50001
+```
+
