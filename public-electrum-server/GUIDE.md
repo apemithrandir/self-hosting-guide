@@ -26,7 +26,7 @@ In addition to the above you will also need a remote server:
 
 This guide assumes you have a local machine running Debian-based Linux Distro with a fully sync-ed Bitcoin Node and Bitcoin indexer either ElectrumX or Fulcrum (ElectRS is another option ElectrumX is many times faster than this).
 
-The way we are going to expose our Bitcoin indexer to the public is via a [Reverse SSH tunnel](https://youtu.be/N8f5zv9UUMI) from our local machine to a VPS.
+The way we are going to expose our Bitcoin indexer to the public is via a [Reverse SSH tunnel](https://youtu.be/N8f5zv9UUMI) from our local machine to a remote server.
 
 This [guide](https://openoms.github.io/bitcoin-tutorials/ssh_tunnel.html) from @openoms covers some of this but not specifically from the perspective of tunnelling your Electrum Server.
 
@@ -65,9 +65,8 @@ WantedBy=multi-user.target
 _Note: Remote port should not be equal to 50001 or 50002 to avoid potential binding issues on your remote server._
 
 The port you are tunneling should be the regular TCP port 50001 and not the SSL
-port 50002. This is because on the VPS we will be using your cert and key from
-your Electrum server to apply SSL via nginx when exposing the data to the
-public. You want to edit the config file for your Electrum Server and make sure
+port 50002. This is because the remote server will be performing the SSL
+encryption via nginx when exposing the data to the public. You want to edit the config file for your Electrum Server and make sure
 the line relating to enabling tcp is uncommented. In `fulcrum.conf` this is
 near line ~120 `tcp = 0.0.0.0:50001`. 
 
@@ -109,7 +108,7 @@ edit the sshd config:
 ```bash
 vim /etc/ssh/sshd_config
 ```
-Make sure the following entries are active (uncommented, meaning there is no # at the beggining of the line). You can search for them in the config or if they are not included just paste these on the end of the file:
+Make sure the following entries are active. You can search for them in the config and remove the # to activate them or if they are not included just paste these on the end of the file:
 ```
 RSAAuthentication yes
 PubkeyAuthentication yes
@@ -223,6 +222,6 @@ ufw status
 ufw allow 50002
 ufw status
 ```
-You will also want to look into server security:
+You will also want to look into some basic server security:
   - [How to disable ssh password login](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
   - [Fail2Ban](https://github.com/fail2ban/fail2ban)
