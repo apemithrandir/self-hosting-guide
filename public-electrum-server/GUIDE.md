@@ -45,7 +45,7 @@ sudo vim /etc/systemd/system/ssh-tunnel.service
 ```
 
 Here is a template of this `.service` file:
-```unit
+```service
 [Unit]
 Description=Remote SSH tunnel for multiple TCP applications
 After=network.target
