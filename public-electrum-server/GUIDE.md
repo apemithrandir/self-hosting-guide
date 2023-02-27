@@ -108,7 +108,7 @@ edit the sshd config:
 ```bash
 vim /etc/ssh/sshd_config
 ```
-Make sure the following entries are active. You can search for them in the config and remove the # to activate them or if they are not included just paste these on the end of the file:
+Make sure the following entries are active. You can search for them in the config and remove the # to activate them or if they are not included just paste them on the end of the file:
 ```
 RSAAuthentication yes
 PubkeyAuthentication yes
@@ -160,7 +160,7 @@ stream {
 }
 ```
 Now you might be wondering where to get the `ssl_certificate` and
-`ssl_certificate_key`. If you already setup ssl on you Electrum server on your
+`ssl_certificate_key`. If you already setup ssl on your Electrum server on your
 local machine then you can use
 [scp](https://www.freecodecamp.org/news/scp-linux-command-example-how-to-ssh-file-transfer-from-remote-to-local/)
 to copy those certificate and keys to your remote server and reuse them.
@@ -231,5 +231,4 @@ Thanks to [wiz](https://github.com/wiz) and [emzy](https://github.com/Emzy) for 
 
 ### Issues
 
-I am not on Twitter but if you need help with this guide you can create an
-issue on the repo and I will help you there.
+If you need help with this guide you can create an issue on the repo and I will help you there.
