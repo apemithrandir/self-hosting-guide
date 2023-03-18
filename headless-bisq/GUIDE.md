@@ -23,7 +23,9 @@ You will also need a Laptop (or other Computer with display functionality) in or
 If you have already got a Bisq instance running on your Laptop with your wallet and payment accounts attached to it then you should [Backup your Bisq Data Directory](https://bisq.wiki/Backing_up_application_data). Basically you should close your Bisq instance and then copy the Bisq data directory to your headless server:
 
 ```bash
+### make sure rsync is installed on both machines
 sudo apt install rsync
+### then sync up your folder to a backup directory
 rsync -aP ~/.local/share/Bisq/* username@{headless-ip}:~/BisqBackup/
 ```
 
@@ -95,7 +97,7 @@ Assuming it is all setup well then let us get that data directory that you copie
 rm -r .local/share/Bisq/*
 ### copy from your backup folder:
 sudo apt install rsync
-rsync -avP ~/BisqBackup/* .local/share/Bisq/
+rsync -aP ~/BisqBackup/* .local/share/Bisq/
 ```
 Now open Bisq on your headless server again and check that your data directory is restored correctly and that you have your wallet and payment accounts preserved from the old Bisq instance.
 
@@ -116,6 +118,7 @@ xpra attach ssh:username@{{headless-ip}:10
 This should hopefully make your Bisq instance pop up on the host machine in all it's glory. You can now create an offer and then keep that offer running on the server and shudown your host machine. Just use `CTRL+C` in the terminal window where you ran `xpra attach ssh:username@{{headless-ip}:100`. Happy trading!
 
 ### Troubleshooting
+#### XPRA folder Permissions
 If you run into weird permissions errors around where `xpra` wants to keep it's logs on your headless server then you might need to do this:
 ```bash
 ### I'm not very sure about these steps, so if you spot an error let me know:
@@ -124,4 +127,41 @@ sudo chown {username} /run/user/1000
 sudo mkdir /run/user/1000/xpra
 sudo chown {username} /run/user/1000/xpra/
 ```
+#### Usability Quirks
+Small quirks to be aware of, you won't easily be able to copy and paste from the XPRA Bisq GUI to your host machine (or at least I haven't figured that out yet). This can make paying from an external wallet a bit cumbersome. Similarly the open in external wallet link _won't work_, in the sense that it is trying to open a wallet on your server. Now maybe you could also run Sparrow Wallet via XPRA and that would work but I haven't tested that yet.
 
+#### Bisq Double Instances
+Bisq doesn't especially like if you run multiple instances of the same data directory, so if for some reason you want to spot running the server instance and go back to your Laptop instance I would recommend the following:
+```bash
+### Open your XPRA instance on your host
+xpra attach ssh:username@{{headless-ip}:10
+### Now rather than CTRL+C escape you must actually shutdown the GUI properly first
+### then CTRL+C escape from the xpra attachment.
+### Now enter your server:
+ssh username@{headless-ip}
+### Check XPRA is still running
+xpra list
+### Stop XPRA for that Bisq process running at :10
+xpra stop :10
+### It is good practice to backup your current Bisq data directory folder on your server first:
+rsync -aP ~/.local/share/Bisq/ ~/BisqBackup_YYYYMMDD
+### Now exit your server
+exit
+### sync up your host machine's Bisq directory with your servers:
+rsync -aP username@{headless-ip}:~/.local/share/Bisq/ ~/.local/share/Bisq/
+```
+
+Now you should be able to open your Bisq on your host machine without causing you any issues with open offers and trades. Though I would advise against doing this when you are in the middle of a trade settlement just to err on the side of caution.
+
+Similarily if you are now going back to your server instance you should close that GUI instance down and now copy your host machine's Bisq directory back to your server:
+```bash
+### It is good practice to backup your current Bisq data directory folder on your server first:
+rsync -aP ~/.local/share/Bisq/ ~/BisqBackup_YYYYMMDD
+### sync up your server's Bisq directory with your host machine:
+rsync -aP ~/.local/share/Bisq/ username@{headless-ip}:~/.local/share/Bisq/
+ssh username@{headless-ip}
+xpra start :10 --start=Bisq
+xpra list
+exit
+xpra attach ssh:username@{{headless-ip}:10
+```
