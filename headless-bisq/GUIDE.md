@@ -25,6 +25,9 @@ If you have already got a Bisq instance running on your Laptop with your wallet 
 ```bash
 ### make sure rsync is installed on both machines
 sudo apt install rsync
+ssh username@{headless-ip}
+sudo apt install rsync
+exit
 ### then sync up your folder to a backup directory
 rsync -aP ~/.local/share/Bisq/* username@{headless-ip}:~/BisqBackup_YYYYMMDD/
 ```
