@@ -97,10 +97,10 @@ This should now open Bisq GUI on your host machine. Let it boot up and sync. The
 Assuming it is all setup well then let us get that data directory that you copied to your server in the _First Backup Bisq!_ section.
 ```bash
 ### Delete the files stored during the initialization of Bisq above:
-rm -r .local/share/Bisq/*
+rm -r ~/.local/share/Bisq/*
 ### copy from your backup folder:
 sudo apt install rsync
-rsync -aP ~/BisqBackup_YYYYMMDD/* .local/share/Bisq/
+rsync -aP ~/BisqBackup_YYYYMMDD/* ~/.local/share/Bisq/
 ```
 Now open Bisq on your headless server again and check that your data directory is restored correctly and that you have your wallet and payment accounts preserved from the old Bisq instance.
 
