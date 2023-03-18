@@ -134,7 +134,7 @@ sudo chown {username} /run/user/1000/xpra/
 Small quirks to be aware of, you won't easily be able to copy and paste from the XPRA Bisq GUI to your host machine (or at least I haven't figured that out yet). This can make paying from an external wallet a bit cumbersome. Similarly the open in external wallet link _won't work_, in the sense that it is trying to open a wallet on your server. Now maybe you could also run Sparrow Wallet via XPRA and that would work but I haven't tested that yet.
 
 #### Bisq Double Instances
-Bisq doesn't especially like if you run multiple instances of the same data directory, so if for some reason you want to spot running the server instance and go back to your Laptop instance I would recommend the following:
+Bisq doesn't especially like if you run multiple instances of the same data directory, so if for some reason you want to stop running the server instance and go back to your Laptop instance I would recommend the following:
 ```bash
 ### Open your XPRA instance on your host
 xpra attach ssh:username@{headless-ip}:10
