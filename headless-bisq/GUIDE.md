@@ -26,7 +26,7 @@ If you have already got a Bisq instance running on your Laptop with your wallet 
 ### make sure rsync is installed on both machines
 sudo apt install rsync
 ### then sync up your folder to a backup directory
-rsync -aP ~/.local/share/Bisq/* username@{headless-ip}:~/BisqBackup/
+rsync -aP ~/.local/share/Bisq/* username@{headless-ip}:~/BisqBackup_YYYYMMDD/
 ```
 
 ### Installing Bisq
@@ -97,7 +97,7 @@ Assuming it is all setup well then let us get that data directory that you copie
 rm -r .local/share/Bisq/*
 ### copy from your backup folder:
 sudo apt install rsync
-rsync -aP ~/BisqBackup/* .local/share/Bisq/
+rsync -aP ~/BisqBackup_YYYYMMDD/* .local/share/Bisq/
 ```
 Now open Bisq on your headless server again and check that your data directory is restored correctly and that you have your wallet and payment accounts preserved from the old Bisq instance.
 
