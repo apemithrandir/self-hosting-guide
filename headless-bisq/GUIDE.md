@@ -42,11 +42,12 @@ sudo apt update && sudo apt upgrade
 ### Install GUI utility
 sudo apt install xdg-utils
 ### Download, verify and install Bisq
-wget https://bisq.network/downloads/v1.9.9/Bisq-64bit-1.9.9.deb
-wget https://bisq.network/downloads/v1.9.9/Bisq-64bit-1.9.9.deb.asc
-curl https://bisq.network/downloads/v1.9.9/E222AA02.asc | gpg --import
-gpg --verify Bisq-64bit-1.9.9.deb.asc
-sudo dpkg -i Bisq-64bit-1.9.9.deb
+VERSION="1.9.9"
+wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb
+wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb.asc
+curl https://bisq.network/downloads/v$VERSION/E222AA02.asc | gpg --import
+gpg --verify Bisq-64bit-$VERSION.deb.asc
+sudo dpkg -i Bisq-64bit-$VERSION.deb
 ### Often the location of the Bisq binary won't be in your $PATH
 ### Edit your .bashrc (Also install vim because it kicks ass):
 sudo apt install vim
