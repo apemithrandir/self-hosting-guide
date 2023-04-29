@@ -33,12 +33,24 @@ VERSION="1.7.6"
 wget https://github.com/sparrowwallet/sparrow/releases/download/$VERSION/sparrow-server_$VERSION-1_amd64.deb
 wget https://github.com/sparrowwallet/sparrow/releases/download/$VERSION/sparrow-$VERSION-manifest.txt.asc
 wget https://github.com/sparrowwallet/sparrow/releases/download/$VERSION/sparrow-$VERSION-manifest.txt
+```
+
+Verify the release:
+```bash
+VERSION="1.7.6"
 curl https://keybase.io/craigraw/pgp_keys.asc | gpg --import
 gpg --verify sparrow-$VERSION-manifest.txt.asc
 sha256sum --check sparrow-$VERSION-manifest.txt --ignore-missing
+```
+
+Install Sparrow Server:
+```bash
+VERSION="1.7.6"
 sudo dpkg -i sparrow-server_$VERSION-1_amd64.deb
-### Often the location of the Sparrow binary won't be in your $PATH
-### Edit your .bashrc (Also install vim because it kicks ass):
+```
+
+Often the location of the Sparrow binary won't be in your `$PATH`. Edit your `.bashrc` (Also install vim because it kicks ass):
+```bash
 sudo apt install vim
 sudo vim ~/.bashrc
 ### Add the end of the .bashrc include this:
