@@ -51,8 +51,8 @@ Description=Remote SSH tunnel for Electrum Server
 After=network.target
 
 [Service]
-User=statue
-Group=statue
+User=localuser
+Group=localusergroup
 Environment="AUTOSSH_GATETIME=0"
 ExecStart=/usr/bin/autossh -C -M 0 -v -N -o "ServerAliveInterval=60" -R <remote-port>:localhost:50001 <remote-username>@<remote-ip-or-domain>
 Restart=always
