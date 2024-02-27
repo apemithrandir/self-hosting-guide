@@ -161,6 +161,8 @@ stream {
 ```
 _Note: If you run into issues with stream and get the error `unknown directive "stream" in /etc/nginx/nginx.conf:` after adding the above and running `nginx -t`. Then you should try installing `libnginx-mod-stream` via `apt install libnginx-mod-stream` ([link](https://www.server-world.info/en/note?os=Ubuntu_22.04&p=nginx&f=12))._
 #### HTTPS Certificates
+*Update: Due to restrictions in BDK you should try to obtain a certificate via Let's Encrypty versus using a self-signed certificate as described below. You can follow this guide if you already have nginx and certbot installed on your VPS: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04*
+
 Now you might be wondering where to get the `ssl_certificate` and
 `ssl_certificate_key`. If you already setup ssl on your Electrum server on your
 local machine then you can use
