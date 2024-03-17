@@ -47,6 +47,7 @@ wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb
 wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb.asc
 curl https://bisq.network/downloads/v$VERSION/E222AA02.asc | gpg --import
 gpg --verify Bisq-64bit-$VERSION.deb.asc
+sudo mkdir /usr/share/desktop-directories/
 sudo dpkg -i Bisq-64bit-$VERSION.deb
 ### Often the location of the Bisq binary won't be in your $PATH
 ### Edit your .bashrc (Also install vim because it kicks ass):
