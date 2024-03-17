@@ -120,7 +120,7 @@ Now head exit from your headless client and get back into terminal for your host
 xpra attach ssh:username@{headless-ip}:10
 ```
 
-This should hopefully make your Bisq instance pop up on the host machine in all it's glory. You can now create an offer and then keep that offer running on the server and shudown your host machine. Just use `CTRL+C` in the terminal window where you ran `xpra attach ssh:username@{headless-ip}:100`. Happy trading!
+This should hopefully make your Bisq instance pop up on the host machine in all it's glory. You can now create an offer and then keep that offer running on the server and shudown your host machine. Just use `CTRL+C` in the terminal window where you ran `xpra attach ssh:username@{headless-ip}:10`. Happy trading!
 
 ### Troubleshooting
 #### XPRA folder Permissions
