@@ -29,6 +29,10 @@ The setup process is very easy. Just go into your commandline and run `phoenixd`
 
 After you run `phoenixd` for the first time, interrupt the command with `CTRL+C` and this will shut it down. Now you just need to setup a `.service` file to make sure it remains running in the background 24/7.
 
+### Backup Seed
+
+The 12-word seed phrase for your wallet is stored in plain text in `~/.phoenix/seed.dat`. Back up this phrase somewhere for recovery. I would probably recommend backing up the complete contents of `~/.phoenix`.
+
 ### Review Defaults
 You might also want to review some of the default settings and decide whether you want to override these in `~/.phoenix/phoenix.conf`. In particular you might want to set a different max mining fee.
 ```bash
