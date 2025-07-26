@@ -75,7 +75,7 @@ sudo apt install ca-certificates
 # add xpra GPG key:
 sudo wget -O "/usr/share/keyrings/xpra.asc" https://xpra.org/gpg.asc
 # add the xpra repository:
-wget -O "/etc/apt/sources.list.d/xpra.sources" https://xpra.org/repos/$DISTRO/xpra.sources
+wget -O "/etc/apt/sources.list.d/xpra.sources" https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/$DISTRO/xpra-lts.sources
 # add the optional beta channel:
 # wget -O "/etc/apt/sources.list.d/xpra-beta.sources" https://xpra.org/repos/$DISTRO/xpra-beta.sources
 # install the xpra package:
