@@ -45,7 +45,7 @@ sudo apt install xdg-utils
 VERSION="1.9.9"
 wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb
 wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb.asc
-curl https://bisq.network/downloads/v$VERSION/E222AA02.asc | gpg --import
+curl https://bisq.network/pubkey/E222AA02.asc | gpg --import
 gpg --verify Bisq-64bit-$VERSION.deb.asc
 sudo mkdir /usr/share/desktop-directories/
 sudo dpkg -i Bisq-64bit-$VERSION.deb
