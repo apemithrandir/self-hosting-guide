@@ -67,6 +67,8 @@ The _normal_ way for accessing GUI instances from a headless server is via [X11 
 XPRA must be installed on both the client and the host. Please follow instructions on their [GitHub](https://github.com/Xpra-org/xpra) for installation. I will give instructions for Ubuntu 22.04LTS:
 
 ```bash
+# If running Debian, use the current version directly e.g. bookworm instead of jammy
+# For Linux Mint you need to map to the corresponding version of Ubuntu, e.g. Mint 22 Wilma -> Ubuntu 24.04 Noble Wombat (DISTRO=noble)
 DISTRO=jammy
 #install https support for apt (which may be installed already):
 sudo apt update
