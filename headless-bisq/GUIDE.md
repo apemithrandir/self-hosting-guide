@@ -45,7 +45,7 @@ sudo apt install xdg-utils
 VERSION="1.9.9"
 wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb
 wget https://bisq.network/downloads/v$VERSION/Bisq-64bit-$VERSION.deb.asc
-curl https://bisq.network/downloads/v$VERSION/E222AA02.asc | gpg --import
+curl https://bisq.network/pubkey/E222AA02.asc | gpg --import
 gpg --verify Bisq-64bit-$VERSION.deb.asc
 sudo mkdir /usr/share/desktop-directories/
 sudo dpkg -i Bisq-64bit-$VERSION.deb
@@ -67,6 +67,8 @@ The _normal_ way for accessing GUI instances from a headless server is via [X11 
 XPRA must be installed on both the client and the host. Please follow instructions on their [GitHub](https://github.com/Xpra-org/xpra) for installation. I will give instructions for Ubuntu 22.04LTS:
 
 ```bash
+# If running Debian, use the current version directly e.g. bookworm instead of jammy
+# For Linux Mint you need to map to the corresponding version of Ubuntu, e.g. Mint 22 Wilma -> Ubuntu 24.04 Noble Wombat (DISTRO=noble)
 DISTRO=jammy
 #install https support for apt (which may be installed already):
 sudo apt update
@@ -75,7 +77,7 @@ sudo apt install ca-certificates
 # add xpra GPG key:
 sudo wget -O "/usr/share/keyrings/xpra.asc" https://xpra.org/gpg.asc
 # add the xpra repository:
-wget -O "/etc/apt/sources.list.d/xpra.sources" https://xpra.org/repos/$DISTRO/xpra.sources
+wget -O "/etc/apt/sources.list.d/xpra.sources" https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/$DISTRO/xpra-lts.sources
 # add the optional beta channel:
 # wget -O "/etc/apt/sources.list.d/xpra-beta.sources" https://xpra.org/repos/$DISTRO/xpra-beta.sources
 # install the xpra package:
@@ -116,8 +118,8 @@ xpra list
 ```
 Now head exit from your headless client and get back into terminal for your host and run this:
 ```
-### Reminder the :10 must match the number used in your headless client above
-xpra attach ssh:username@{headless-ip}:10
+### Reminder the 10 must match the number used in your headless client above
+xpra attach ssh:username@{headless-ip}/10
 ```
 
 This should hopefully make your Bisq instance pop up on the host machine in all it's glory. You can now create an offer and then keep that offer running on the server and shudown your host machine. Just use `CTRL+C` in the terminal window where you ran `xpra attach ssh:username@{headless-ip}:10`. Happy trading!
